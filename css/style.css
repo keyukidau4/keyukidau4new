@@ -51,8 +51,10 @@
     width: 100%;
 }
 
-body {
+html,body {
     font-family: sans-serif;
+    height: 100%;
+    width: 100%;
 }
 
 body h3 {
@@ -168,23 +170,29 @@ h1 {
     text-align: center;
 }
 
+.loading {
+    display: block;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+    background-color: darkgray;
+    color: goldenrod;
+    margin-top: 70px;
+}
+
+.loading img {
+    width: 50%;
+    height: 500px;
+    z-index: 500;
+    overflow: hidden;
+}
+
 .content {
     width: 80%;
     margin: 0 10%;
-    height: 1000px;
-    background-color: lavenderblush;
     margin-top: 65px;
-}
-
-.content .content-news {
-    display: flex;
-    border: 3px solid darkslategrey;
-}
-
-.content .content-img {
-    display: block;
-    padding: 2px;
-    margin-left: 2px;
 }
 
 .content .content-img img {
@@ -192,12 +200,10 @@ h1 {
     height: 200px;
 }
 
-.chitiet {
-    margin-left: 3px;
-    padding-left: 3px;
-}
+
 
 /* response */
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="col-"] {
@@ -207,7 +213,22 @@ h1 {
 
 @media only screen and (min-width: 768px) {
     /* For tablets: */
-
+    .content .content-news {
+        display: block;
+        float: left;
+        border: 3px solid darkslategrey;
+    }
+    .content .content-img {
+        display: block;
+        padding: 2px;
+        margin-left: 2px;
+        width: 100% !important;
+    }
+    .content .content-img img {
+        width: 50%;
+        height: 200px;
+        padding: 0 20%;
+    }
     .col-s-1 {
         width: 8.33%;
     }
@@ -248,8 +269,26 @@ h1 {
 
 @media only screen and (min-width: 992px) {
     /* For desktop: */
-    .row .col-5 {
-        height: 600px !important;
+    .content .content-news {
+        display: flex;
+        border: 3px solid darkslategrey;
+    }
+    .content .content-img {
+        display: block !important;
+        padding: 2px;
+        margin-left: 2px;
+        width: 35% !important;
+    }
+
+    .content .content-img img {
+        width: 100%;
+        padding: 0;
+    }
+
+    .content .chitiet {
+        width: 60%;
+        margin-left: 3px;
+        padding-left: 3px;
     }
     .col-1 {
         width: 8.33%;

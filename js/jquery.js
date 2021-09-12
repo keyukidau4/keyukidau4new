@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+    // biểu tượng loading trong quá trình tải dữ liệu từ API về.
+    $(window).on("load", function () {
+        $('body').removeClass('preLoading');
+        $(".loading").delay(1000).fadeOut('fast');
+    });
+
     // Phần search box
     $('.search-box').click(function () {
         $('.backdrop, .box').animate({ 'opacity': '.50' }, 300, 'linear');
@@ -26,8 +32,6 @@ $(document).ready(function () {
         });
     }
 
-    // su kien onload(load trang)
-    
     // load du lieu trang chu
     fetch('https://gnews.io/api/v4/top-headlines?&lang=en&country=en&token=4afeefb1d4331ec1954c7bce8ca6d262')
         .then(function (response) {
@@ -45,7 +49,7 @@ $(document).ready(function () {
                 let dateNews = new Date(this.publishedAt);
                 const sourceNews = [this.source.name, this.source.url];
                 html += '<div class = "content-news col-12" >';
-                html += '<div class = "col-4 content-img"><img src = ' + '"' + imageNews + '"' + ' alt = "news"></div>';
+                html += '<div class = "col-s-3 col-4 content-img"><img src = ' + '"' + imageNews + '"' + ' alt = "news"></div>';
                 html += '<div class = "chitiet"><div class = "title-news"><a href=' + '"' + urlNews + '"' + 'target="_blank">';
                 html += '<h3>' + '"' + titleNews + '"</h3></a></div>';
                 html += '<i>' + descriptionNews + '</i><p>' + contentNews + '</p>';
@@ -55,25 +59,23 @@ $(document).ready(function () {
                 $("section").html(html);
             });
         });
-    // $("#myInput").on('keyup', function (event) {
-    //     event.preventDefault();
-    //     var key = $(this).val().toLowerCase();
-    //     $(".content").filter(function () {
-    //         $(this).toggle($(this).text().toLowerCase().indexOf(key) > -1);
-    //     })
-    // });
-
     // su kien click nut tim kiem
     $("#search-button").on("click", function () {
+
         let searchText = $("#myInput").val();
+
         //tìm kiếm dữ liệu trên trang chủ
         fetch('https://gnews.io/api/v4/search?q=' + searchText + '&token=4afeefb1d4331ec1954c7bce8ca6d262')
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
+                debugger
+
                 var myNews = data.articles;
                 var html = "";
+
+
                 $(myNews).each(function () {
                     let titleNews = this.title;
                     let descriptionNews = this.description;
@@ -83,7 +85,7 @@ $(document).ready(function () {
                     let dateNews = new Date(this.publishedAt);
                     const sourceNews = [this.source.name, this.source.url];
                     html += '<div class = "content-news col-12" >';
-                    html += '<div class = "col-4 content-img"><img src = ' + '"' + imageNews + '"' + ' alt = "news"></div>';
+                    html += '<div class = "col-s-3 col-4 content-img"><img src = ' + '"' + imageNews + '"' + ' alt = "news"></div>';
                     html += '<div class = "chitiet"><div class = "title-news"><a href=' + '"' + urlNews + '"' + 'target="_blank">';
                     html += '<h3>' + '"' + titleNews + '"</h3></a></div>';
                     html += '<i>' + descriptionNews + '</i><p>' + contentNews + '</p>';
