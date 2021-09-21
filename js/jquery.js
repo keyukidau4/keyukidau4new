@@ -25,7 +25,6 @@ $(document).ready(function () {
         close_box();
     });
 
-
     function close_box() {
         $('.backdrop, .box').animate({ 'opacity': '0' }, 300, 'linear', function () {
             $('.backdrop, .box').css('display', 'none');
@@ -74,7 +73,6 @@ $(document).ready(function () {
 
                 var myNews = data.articles;
                 var html = "";
-
 
                 $(myNews).each(function () {
                     let titleNews = this.title;
